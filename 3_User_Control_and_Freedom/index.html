@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Control y Libertad para el Usuario</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    
+    h1 {
+      color: #333;
+    }
+    
+    textarea {
+      width: 300px;
+      height: 150px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: none;
+    }
+    
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
+  <script>
+    var textoInicial = '';
+    var textoActual = '';
+    var historial = [];
+
+    function guardarTexto() {
+      textoActual = document.getElementById('texto').value;
+      document.getElementById('btnDeshacer').disabled = false;
+    }
+
+    function deshacer() {
+      if (historial.length > 0) {
+        textoActual = historial.pop();
+        document.getElementById('texto').value = textoActual;
+      }
+      if (historial.length === 0) {
+        document.getElementById('btnDeshacer').disabled = true;
+      }
+      document.getElementById('btnRehacer').disabled = false;
+    }
+
+    function rehacer() {
+      if (textoActual !== '') {
+        historial.push(textoActual);
+        document.getElementById('texto').value = textoActual;
+        textoActual = '';
+      }
+      if (textoActual === '') {
+        document.getElementById('btnRehacer').disabled = true;
+      }
+      document.getElementById('btnDeshacer').disabled = false;
+    }
+  </script>
+</head>
+<body>
+  <h1>Control y Libertad para el Usuario</h1>
+  <textarea id="texto" rows="4" cols="50" oninput="guardarTexto()"></textarea>
+  <br>
+  <button id="btnDeshacer" onclick="deshacer()" disabled>Deshacer</button>
+  <button id="btnRehacer" onclick="rehacer()" disabled>Rehacer</button>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prevención de errores</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    
+    h1 {
+      color: #333;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .input-field {
+      padding: 10px;
+      font-size: 16px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    
+    .error-message {
+      color: #FF0000;
+      font-size: 14px;
+      text-align: left;
+      margin-top: 5px;
+    }
+  </style>
+  <script>
+    function validateEmail() {
+      var emailInput = document.getElementById('email');
+      var confirmEmailInput = document.getElementById('confirm-email');
+      var errorMessage = document.getElementById('email-error');
+      
+      if (emailInput.value !== confirmEmailInput.value) {
+        errorMessage.textContent = 'Los correos electrónicos no coinciden.';
+      } else {
+        errorMessage.textContent = '';
+      }
+    }
+    
+    function validatePassword() {
+      var passwordInput = document.getElementById('password');
+      var confirmPasswordInput = document.getElementById('confirm-password');
+      var errorMessage = document.getElementById('password-error');
+      
+      if (passwordInput.value !== confirmPasswordInput.value) {
+        errorMessage.textContent = 'Las contraseñas no coinciden.';
+      } else {
+        errorMessage.textContent = '';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Prevención de errores</h1>
+  
+  <div class="form-group">
+    <label for="email" class="label">Correo electrónico:</label>
+    <input type="email" id="email" class="input-field" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="confirm-email" class="label">Confirmar correo electrónico:</label>
+    <input type="email" id="confirm-email" class="input-field" oninput="validateEmail()" required>
+    <div id="email-error" class="error-message"></div>
+  </div>
+  
+  <div class="form-group">
+    <label for="password" class="label">Contraseña:</label>
+    <input type="password" id="password" class="input-field" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="confirm-password" class="label">Confirmar contraseña:</label>
+    <input type="password" id="confirm-password" class="input-field" oninput="validatePassword()" required>
+    <div id="password-error" class="error-message"></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Visibilidad del estado del sistema</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    
+    h1 {
+      color: #333;
+    }
+    
+    #estado {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
+  <script>
+    // Función para obtener el estado del sistema (simulada)
+    function obtenerEstadoSistema() {
+      // Aquí puedes realizar las llamadas o lógica necesaria para obtener el estado actual del sistema
+      // Por simplicidad, en este ejemplo se devuelve un valor aleatorio (0 o 1)
+      return Math.random() < 0.5 ? 0 : 1;
+    }
+    
+    // Función para actualizar el estado en la página
+    function actualizarEstado() {
+      var estado = obtenerEstadoSistema();
+      var estadoTexto = estado === 1 ? 'Activo' : 'Inactivo';
+      document.getElementById('estado').innerText = estadoTexto;
+    }
+    
+    // Llamada inicial para mostrar el estado al cargar la página
+    window.onload = actualizarEstado;
+  </script>
+</head>
+<body>
+  <h1>Visibilidad del estado del sistema</h1>
+  <p>El estado actual del sistema es: <span id="estado"></span></p>
+  <button onclick="actualizarEstado()">Actualizar estado</button>
+</body>
+</html>

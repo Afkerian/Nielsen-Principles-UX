@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reconocer antes que recordar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    
+    h1 {
+      color: #333;
+    }
+    
+    .font-select {
+      margin-bottom: 20px;
+    }
+    
+    .label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .font-option {
+      display: inline-block;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    
+    .font-preview {
+      display: inline-block;
+      font-size: 20px;
+    }
+    
+    .selected {
+      border: 2px solid #333;
+    }
+  </style>
+  <script>
+    function selectFont(font) {
+      var fontOptions = document.getElementsByClassName('font-option');
+      
+      for (var i = 0; i < fontOptions.length; i++) {
+        fontOptions[i].classList.remove('selected');
+      }
+      
+      font.classList.add('selected');
+      updateFontPreview(font.textContent);
+    }
+    
+    function updateFontPreview(fontName) {
+      var fontPreview = document.getElementById('font-preview');
+      fontPreview.style.fontFamily = fontName;
+    }
+  </script>
+</head>
+<body>
+  <h1>Reconocer antes que recordar</h1>
+  
+  <div class="font-select">
+    <label class="label">Selecciona una fuente:</label>
+    
+    <div class="font-option selected" onclick="selectFont(this)">Arial</div>
+    <div class="font-option" onclick="selectFont(this)">Times New Roman</div>
+    <div class="font-option" onclick="selectFont(this)">Verdana</div>
+    <div class="font-option" onclick="selectFont(this)">Courier New</div>
+  </div>
+  
+  <div id="font-preview" class="font-preview">Texto de ejemplo</div>
+</body>
+</html>
