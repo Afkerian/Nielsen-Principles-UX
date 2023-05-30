@@ -1,5 +1,7 @@
 # Nielsen-Principles-UX
 
+https://afkerian.github.io/Nielsen-Principles-UX/
+
 1. Visibility of system status
 The system should always keep users informed about what is going on, through appropriate feedback within reasonable time.
 
