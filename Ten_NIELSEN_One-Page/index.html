@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejemplo de formulario que aplica los 10 principios de Nielsen</title>
+  <style>
+    /* Estilos CSS para la página */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    
+    button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    #status {
+      margin-top: 10px;
+      text-align: center;
+    }
+    
+    #success-message {
+      color: green;
+      margin-top: 10px;
+    }
+    
+    #error-message {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ejemplo de formulario que aplica los 10 principios de Nielsen</h1>
+  
+  <form id="contact-form">
+    <label for="name-input">Nombre:</label>
+    <input type="text" id="name-input" required>
+    
+    <label for="email-input">Correo electrónico:</label>
+    <input type="email" id="email-input" required>
+    
+    <label for="subject-input">Asunto:</label>
+    <input type="text" id="subject-input" required>
+    
+    <label for="message-input">Mensaje:</label>
+    <textarea id="message-input" rows="5" required></textarea>
+    
+    <button type="submit">Enviar</button>
+    
+    <div id="status"></div>
+    
+    <p id="success-message" class="hidden">¡Mensaje enviado con éxito!</p>
+    <p id="error-message" class="hidden">Ha ocurrido un error al enviar el mensaje.</p>
+  </form>
+  
+  <script>
+    // Script JavaScript para agregar interactividad
+    const contactForm = document.getElementById('contact-form');
+    const statusElement = document.getElementById('status');
+    const successMessage = document.getElementById('success-message');
+    const errorMessage = document.getElementById('error-message');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      showStatus('Enviando mensaje...');
+      
+      const name = document.getElementById('name-input').value;
+      const email = document.getElementById('email-input').value;
+      const subject = document.getElementById('subject-input').value;
+      const message = document.getElementById('message-input').value;
+
+      if (!name || !email || !subject || !message) {
+        showError('Por favor, complete todos los campos.');
+        return;
+      }
+      
+      setTimeout(() => {
+        showStatus('');
+        
+        contactForm.reset();
+        
+        hideError();
+        
+        showSuccessMessage();
+      }, 1500);
+    });
+
+    function showStatus(message) {
+      statusElement.textContent = message;
+    }
+
+    function showSuccessMessage() {
+      successMessage.classList.remove('hidden');
+      setTimeout(() => {
+        successMessage.classList.add('hidden');
+      }, 3000);
+    }
+
+    function showError(message) {
+      errorMessage.textContent = message;
+      errorMessage.classList.remove('hidden');
+    }
+
+    function hideError() {
+      errorMessage.classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
